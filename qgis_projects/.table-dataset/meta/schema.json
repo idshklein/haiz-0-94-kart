@@ -1,0 +1,1 @@
+[{"id": "6f832d3e-a30b-8962-ed7d-187148923747", "name": "name", "dataType": "text", "primaryKeyIndex": 0}, {"id": "fef979b8-4c2e-04e2-4b74-3d82fcf6d29f", "name": "metadata", "dataType": "blob"}, {"id": "ce529984-78ee-df6d-2f6f-4605f10fd98f", "name": "content", "dataType": "blob"}]
