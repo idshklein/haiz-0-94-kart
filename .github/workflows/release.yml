@@ -1,0 +1,21 @@
+name: Release GPKG on tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create release and upload kart_repo.gpkg
+        uses: softprops/action-gh-release@v2
+        with:
+          files: kart_repo.gpkg
