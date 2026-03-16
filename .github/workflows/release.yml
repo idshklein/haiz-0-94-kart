@@ -15,9 +15,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Build release bundle zip
+        run: |
+          mkdir -p release
+          zip -j release/haiz_release_bundle.zip kart_repo.gpkg proj.qgs
+
       - name: Create release and upload assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
+            release/haiz_release_bundle.zip
             kart_repo.gpkg
             proj.qgs
