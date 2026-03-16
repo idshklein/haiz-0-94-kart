@@ -1,4 +1,4 @@
-name: Release GPKG on tag
+name: Release GPKG and QGS on tag
 
 on:
   push:
@@ -10,12 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      PROJECT_FILE: proj.qgs
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create release and upload kart_repo.gpkg
+      - name: Build release bundle zip
+        run: |
+          mkdir -p release
+          test -f "$PROJECT_FILE"
+          zip -j release/haiz_release_bundle.zip kart_repo.gpkg "$PROJECT_FILE"
+
+      - name: Create release and upload assets
         uses: softprops/action-gh-release@v2
         with:
-          files: kart_repo.gpkg
+          files: |
+            release/haiz_release_bundle.zip
+            kart_repo.gpkg
+            ${{ env.PROJECT_FILE }}
