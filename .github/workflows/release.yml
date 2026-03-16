@@ -1,4 +1,4 @@
-name: Release GPKG on tag
+name: Release QGS on tag
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create release and upload kart_repo.gpkg
+      - name: Create release and upload proj.qgs
         uses: softprops/action-gh-release@v2
         with:
-          files: kart_repo.gpkg
+          files: proj.qgs
