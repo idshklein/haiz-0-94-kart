@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      PROJECT_FILE: proj.qgs
 
     steps:
       - name: Checkout repository
@@ -18,7 +20,8 @@ jobs:
       - name: Build release bundle zip
         run: |
           mkdir -p release
-          zip -j release/haiz_release_bundle.zip kart_repo.gpkg proj.qgs
+          test -f "$PROJECT_FILE"
+          zip -j release/haiz_release_bundle.zip kart_repo.gpkg "$PROJECT_FILE"
 
       - name: Create release and upload assets
         uses: softprops/action-gh-release@v2
@@ -26,4 +29,4 @@ jobs:
           files: |
             release/haiz_release_bundle.zip
             kart_repo.gpkg
-            proj.qgs
+            ${{ env.PROJECT_FILE }}
